@@ -173,16 +173,20 @@ int trans_others_R(int i,
 	int i_10[10] = {0};
 	u8 i_10_index = 0;
 	
-	int j = 0, num_flag = 0;
+	int j = 0, num_flag = 0, signal_flag = 1;
 	
 	if(trans_others_RFlag[i - 1])
 	{
 		for(j = 0; j < TRANS_OTHERS_RBUFF_SIZE; j++)
 			if(trans_others_Rbuff[i - 1][j] <= '9' && trans_others_Rbuff[i - 1][j] >= '0')
 			{
-				i_10[i_10_index] = 10 * i_10[i_10_index] + trans_others_Rbuff[i - 1][j] - '0';
+				i_10[i_10_index] = 10 * i_10[i_10_index] + (trans_others_Rbuff[i - 1][j] - '0') * signal_flag;
 				num_flag = 1;
-			}	
+			}
+			else if(trans_others_Rbuff[i - 1][j] == '-')
+			{
+				signal_flag = -1;
+			}
 			else
 			{
 				if(num_flag == 1)

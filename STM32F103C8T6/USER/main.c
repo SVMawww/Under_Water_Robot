@@ -59,7 +59,7 @@ int main(void)
 
 	while(1)
 	{
-		if(trans_others_R(2, &depth1, &depth2, 0, 0, 0, 0, 0, 0, 0, 0))
+		if(trans_others_R(2, 0, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
 		{
 			depth = depth1 + 0.01 * depth2;
 		}		
@@ -67,16 +67,17 @@ int main(void)
 		{
 			v_x -= 100, v_y -= 100, v_p -= 100;
 			PID_init(&depth_pid, P_depth, I_depth, D_depth, 0);
-			printf("P_depth = %d\r\n", P_depth);
-			printf("I_depth = %d\r\n", I_depth);
-			printf("D_depth = %d\r\n", D_depth);
-			printf("a_depth = %d\r\n", a_depth);
-			printf("v_x = %d\r\n", v_x);
-			printf("v_y = %d\r\n", v_y);
-			printf("v_p = %d\r\n", v_p);
-			printf("pwm_max = %d\r\n", pwm_max);
-			printf("depth = %.2f\r\n\r\n\r\n", depth);
+			printf("\r\n\r\nstm32 receives a piece of message:\r\n");
+			printf("--  P_depth = %5d  --\r\n", P_depth);
+			printf("--  I_depth = %5d  --\r\n", I_depth);
+			printf("--  D_depth = %5d  --\r\n", D_depth);
+			printf("--  a_depth = %5d  --\r\n", a_depth);
+			printf("--    v_x   = %5d  --\r\n", v_x);
+			printf("--    v_y   = %5d  --\r\n", v_y);
+			printf("--    v_p   = %5d  --\r\n", v_p);
+			printf("--  pwm_max = %5d  --\r\n\r\n\r\n", pwm_max);
 		}
+		printf("depth = %.2f\r\n", depth);
 		
 		pwm_depth = PID_calc1(&depth_pid, depth, a_depth);
 		TIM_SetCompare1(TIM3, pwm_limit(pwm_depth));
@@ -86,5 +87,7 @@ int main(void)
 		TIM_SetCompare2(TIM4, pwm_limit(v_x - v_y - v_p));
 		TIM_SetCompare3(TIM4, pwm_limit(v_x + v_y - v_p));
 		TIM_SetCompare4(TIM4, pwm_limit(v_x - v_y + v_p));
+		
+		delay_ms(100);
 	}
 }
