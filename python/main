@@ -100,7 +100,8 @@ def get_track():
                 if bottom_point_x - left_point_x == 0 or bottom_point_x - right_point_x == 0:
                     return [90, int(rect[0][0]), int(rect[0][1]),
                             (right_point_x - left_point_x) * (right_point_x - left_point_x) +
-                            (bottom_point_y - top_point_y) * (bottom_point_y - top_point_y)]
+                            (bottom_point_y - top_point_y) * (bottom_point_y - top_point_y)] + 
+                            [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
                 # 框旋转未达到90度
                 elif (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + \
                         (bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) < \
@@ -110,14 +111,16 @@ def get_track():
                             (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + (
                                         bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) + (
                                         bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + (
-                                        bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]
+                                        bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]+ 
+                            [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
                 # 框旋转达到超过90度
                 else:
                     return [-round(rect[2]) + 90, int(rect[0][0]), int(rect[0][1]),
                             (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + (
                                         bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) + (
                                         bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + (
-                                        bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]
+                                        bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]+ 
+                            [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
             else:
                 return None
         except:

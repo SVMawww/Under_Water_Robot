@@ -177,7 +177,7 @@ int trans_others_R(int i,
 	
 	if(trans_others_RFlag[i - 1])
 	{
-		for(j = 0; j < TRANS_OTHERS_RBUFF_SIZE; j++)
+		for(j = 0; j < trans_others_RFlag[i - 1]; j++)
 			if(trans_others_Rbuff[i - 1][j] <= '9' && trans_others_Rbuff[i - 1][j] >= '0')
 			{
 				i_10[i_10_index] = 10 * i_10[i_10_index] + (trans_others_Rbuff[i - 1][j] - '0') * signal_flag;
