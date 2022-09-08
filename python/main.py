@@ -95,32 +95,55 @@ def get_track():
                 cv2.drawContours(img, [box], 0, (255, 0, 0), 3)
                 cv2.imshow('img', img)
                 cv2.imshow('median', median)
-                cv2.waitKey()
+                if cv2.waitKey(100) & 0xff == ord('q'):
+                    break
                 # 框旋转了90度或0度
                 if bottom_point_x - left_point_x == 0 or bottom_point_x - right_point_x == 0:
+                    print("+++++++++++++++++")
                     return [90, int(rect[0][0]), int(rect[0][1]),
                             (right_point_x - left_point_x) * (right_point_x - left_point_x) +
+<<<<<<< HEAD:python/main
                             (bottom_point_y - top_point_y) * (bottom_point_y - top_point_y)] + 
                             [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
+=======
+                            (bottom_point_y - top_point_y) * (bottom_point_y - top_point_y),
+                            left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y,
+                            top_point_x, top_point_y]
+>>>>>>> c07c404f263544ad12c5d5d9105dbb27fabc0fa3:python/main.py
                 # 框旋转未达到90度
                 elif (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + \
                         (bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) < \
                         (bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + \
                         (bottom_point_y - right_point_y) * (bottom_point_y - right_point_y):
+                    print("+++++++++++++++++")
                     return [-round(rect[2]), int(rect[0][0]), int(rect[0][1]),  # round 返回浮点数四舍五入的值
                             (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + (
                                         bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) + (
                                         bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + (
+<<<<<<< HEAD:python/main
                                         bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]+ 
                             [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
+=======
+                                        bottom_point_y - right_point_y) * (bottom_point_y - right_point_y),
+                            left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y,
+                            top_point_x, top_point_y]
+>>>>>>> c07c404f263544ad12c5d5d9105dbb27fabc0fa3:python/main.py
                 # 框旋转达到超过90度
                 else:
+                    print("+++++++++++++++++")
+                    # print("left:" + left_point_x + left_point_x)
                     return [-round(rect[2]) + 90, int(rect[0][0]), int(rect[0][1]),
                             (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + (
                                         bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) + (
                                         bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + (
+<<<<<<< HEAD:python/main
                                         bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]+ 
                             [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
+=======
+                                        bottom_point_y - right_point_y) * (bottom_point_y - right_point_y),
+                            left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y,
+                            top_point_x, top_point_y]
+>>>>>>> c07c404f263544ad12c5d5d9105dbb27fabc0fa3:python/main.py
             else:
                 return None
         except:
@@ -214,6 +237,9 @@ if cap2.isOpened():
     while True:
         track_res = get_track()
         print(track_res)
+        print("***************")
+        if cv2.waitKey(100) & 0xff == ord('q'):
+            break
 else:
     print("error open cap2 failed")
 
