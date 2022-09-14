@@ -29,6 +29,8 @@
 PID depth_pid;
 int v_x = 0, v_y = 0, v_p = 0, pwm_max = 0;
 
+int pitch = 0, roll = 0, yaw = 0;
+
 //************** Parameter of depth_pid *************//
 int P_depth = 0, I_depth = 0, D_depth = 0;
 int a_depth = 0;		
@@ -56,6 +58,7 @@ int main(void)
 	pwm_init();
 	trans_others_init(1, 115200);
 	trans_others_init(2, 115200);
+	trans_mpu_init(3, 9600);
 
 	while(1)
 	{

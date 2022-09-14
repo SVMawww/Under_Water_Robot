@@ -34,4 +34,10 @@ int trans_others_R(int i,
 void trans_others_T(int i,
 				    int i1, int i2, int i3, int i4, int i5,
 				    int i6, int i7, int i8, int i9, int i10);
+					
+					
+void trans_mpu_init(int i, u32 baud);
+
+int trans_mpu_R( int i, 
+				int* pitch, int* roll, 	int* yaw );
 #endif

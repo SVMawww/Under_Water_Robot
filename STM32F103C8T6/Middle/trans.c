@@ -242,3 +242,39 @@ void trans_others_T(int i,
 	trans_others_Tbuff[i - 1][51] = 0xdd;
 	uart_singletrans(i);
 }			
+
+//***************************************************//
+static struct
+{
+	char c0; char c1; char c2; char c3;
+	char c4; char c5; char c6; char c7;
+	char c8; char c9; char c10;
+}
+trans_mpu_Rbuff[4];
+
+static int trans_mpu_Rflag[4] = {0,0,0,0};
+
+void trans_mpu_init(int i, u32 baud)
+{
+	uart_init(i, baud, 0, 0, 
+					   &trans_mpu_Rbuff[i - 1], sizeof(trans_mpu_Rbuff[i - 1]), 
+					   &trans_mpu_Rflag[i - 1]);
+}
+
+
+int trans_mpu_R( int i, 
+				int* pitch, int* roll, 	int* yaw )
+{
+	if(trans_mpu_Rflag[i - 1] == sizeof(trans_mpu_Rbuff[i - 1]))
+	{		
+		if(trans_mpu_Rbuff[i - 1].c1 == 0x53)
+		{
+			*roll = (( trans_mpu_Rbuff[i - 1].c3 << 8)| trans_mpu_Rbuff[i - 1].c2 ) / 32768 * 180;
+			*pitch = (( trans_mpu_Rbuff[i - 1].c5 << 8)| trans_mpu_Rbuff[i - 1].c4 ) / 32768 * 180;
+			*yaw = (( trans_mpu_Rbuff[i - 1].c7 << 8)| trans_mpu_Rbuff[i - 1].c6 ) / 32768 * 180;
+		}
+		trans_mpu_Rflag[i - 1] = 0;
+		return 1;
+	}
+	return 0;
+}
