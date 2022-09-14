@@ -102,14 +102,11 @@ def get_track():
                     print("+++++++++++++++++")
                     return [90, int(rect[0][0]), int(rect[0][1]),
                             (right_point_x - left_point_x) * (right_point_x - left_point_x) +
-<<<<<<< HEAD:python/main
                             (bottom_point_y - top_point_y) * (bottom_point_y - top_point_y)] + 
                             [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
-=======
                             (bottom_point_y - top_point_y) * (bottom_point_y - top_point_y),
                             left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y,
                             top_point_x, top_point_y]
->>>>>>> c07c404f263544ad12c5d5d9105dbb27fabc0fa3:python/main.py
                 # 框旋转未达到90度
                 elif (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + \
                         (bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) < \
@@ -120,14 +117,11 @@ def get_track():
                             (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + (
                                         bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) + (
                                         bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + (
-<<<<<<< HEAD:python/main
                                         bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]+ 
                             [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
-=======
                                         bottom_point_y - right_point_y) * (bottom_point_y - right_point_y),
                             left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y,
                             top_point_x, top_point_y]
->>>>>>> c07c404f263544ad12c5d5d9105dbb27fabc0fa3:python/main.py
                 # 框旋转达到超过90度
                 else:
                     print("+++++++++++++++++")
@@ -136,14 +130,11 @@ def get_track():
                             (bottom_point_x - left_point_x) * (bottom_point_x - left_point_x) + (
                                         bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) + (
                                         bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + (
-<<<<<<< HEAD:python/main
                                         bottom_point_y - right_point_y) * (bottom_point_y - right_point_y)]+ 
                             [left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y]
-=======
                                         bottom_point_y - right_point_y) * (bottom_point_y - right_point_y),
                             left_point_x, left_point_y, right_point_x, right_point_y, bottom_point_x, bottom_point_y,
                             top_point_x, top_point_y]
->>>>>>> c07c404f263544ad12c5d5d9105dbb27fabc0fa3:python/main.py
             else:
                 return None
         except:
