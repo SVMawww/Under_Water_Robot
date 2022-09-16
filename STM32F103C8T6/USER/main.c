@@ -58,17 +58,15 @@ int main(void)
 	pwm_init();
 	trans_others_init(1, 115200);
 	trans_others_init(2, 115200);
-	trans_mpu_init(3, 9600);
 
 	while(1)
 	{
 		if(trans_others_R(2, 0, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
 		{
-			depth = depth1 + 0.01 * depth2;
-		}		
+			depth = 100 * depth1 + depth2;
+		}
 		if(trans_others_R(1, &P_depth, &I_depth, &D_depth, &a_depth, &v_x, &v_y, &v_p, &pwm_max, 0, 0))
 		{
-			v_x -= 100, v_y -= 100, v_p -= 100;
 			PID_init(&depth_pid, P_depth, I_depth, D_depth, 0);
 			printf("\r\n\r\nstm32 receives a piece of message:\r\n");
 			printf("--  P_depth = %5d  --\r\n", P_depth);

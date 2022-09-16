@@ -189,6 +189,7 @@ int trans_others_R(int i,
 			}
 			else
 			{
+				signal_flag = 1;
 				if(num_flag == 1)
 					i_10_index++, num_flag = 0;
 				if(i_10_index == 10) break;

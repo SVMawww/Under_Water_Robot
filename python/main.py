@@ -242,4 +242,3 @@ if cap2.isOpened():
             break
 else:
     print("error open cap2 failed")
-
