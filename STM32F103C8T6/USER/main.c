@@ -36,18 +36,29 @@ int main(void)
 	trans_others_init(2, 115200);
 
 	while(1)
-	{
-		if(trans_others_R(2, 0, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
-		{
-			if(depth < 0)
-				depth = 100 * depth1 - depth2;
-			else
-				depth = 100 * depth1 + depth2;
-		}
+	{	
+//		if(trans_others_R(2, 0, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
+//		{
+//			if(depth < 0)
+//				depth = 100 * depth1 - depth2;
+//			else
+//				depth = 100 * depth1 + depth2;
+//			
+//			printf("%d ", depth);
+//		}
 
 		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, 0, 0))
 		{
-			if(init_identity == 1)		
+			printf("\r\n%d\r\n", init_identity);
+			printf("%d\r\n", init_pwm);
+			printf("%d\r\n", pwm1);
+			printf("%d\r\n", pwm2);
+			printf("%d\r\n", pwm3);
+			printf("%d\r\n", pwm4);
+			printf("%d\r\n", pwm5);
+			printf("%d\r\n", pwm6);
+			
+			if(init_identity == 1)
 				TIM_SetCompare1(TIM3, init_pwm);
 			else if(init_identity == 2)
 				TIM_SetCompare2(TIM3, init_pwm);
@@ -61,7 +72,14 @@ int main(void)
 				TIM_SetCompare4(TIM4, init_pwm);
 			else
 		    {
-			    TIM_SetCompare1(TIM3, pwm1);
+			    if(pwm1 == 0) pwm1 = 1500;
+				if(pwm2 == 0) pwm2 = 1500;
+				if(pwm3 == 0) pwm3 = 1500;
+				if(pwm4 == 0) pwm4 = 1500;
+				if(pwm5 == 0) pwm5 = 1500;
+				if(pwm6 == 0) pwm6 = 1500;
+				
+				TIM_SetCompare1(TIM3, pwm1);
 				TIM_SetCompare2(TIM3, pwm2);
 				TIM_SetCompare1(TIM4, pwm3);
 				TIM_SetCompare2(TIM4, pwm4);
@@ -69,9 +87,7 @@ int main(void)
 				TIM_SetCompare4(TIM4, pwm6);
 			}
 		}
-
-		printf("depth = %d\r\n", depth);
 		
-		delay_ms(100);
+
 	}
 }
