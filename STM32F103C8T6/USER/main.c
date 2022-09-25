@@ -22,6 +22,7 @@ int init_identity = 0, init_pwm = 0;
 int pwm1 = 0, pwm2 = 0, pwm3 = 0, pwm4 = 0, pwm5 = 0, pwm6 = 0;
 
 int depth = 0;	int depth1 = 0, depth2 = 0;
+int temp = 0;
 
 
 int main(void)
@@ -37,26 +38,26 @@ int main(void)
 
 	while(1)
 	{	
-//		if(trans_others_R(2, 0, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
-//		{
-//			if(depth < 0)
-//				depth = 100 * depth1 - depth2;
-//			else
-//				depth = 100 * depth1 + depth2;
-//			
-//			printf("%d ", depth);
-//		}
+		if(trans_others_R(2, &temp, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
+		{
+			if(depth < 0)
+				depth = 100 * depth1 - depth2;
+			else
+				depth = 100 * depth1 + depth2;
+			
+			printf("depth = %d\r\n", depth);
+		}
 
 		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, 0, 0))
 		{
-			printf("\r\n%d\r\n", init_identity);
-			printf("%d\r\n", init_pwm);
-			printf("%d\r\n", pwm1);
-			printf("%d\r\n", pwm2);
-			printf("%d\r\n", pwm3);
-			printf("%d\r\n", pwm4);
-			printf("%d\r\n", pwm5);
-			printf("%d\r\n", pwm6);
+//			printf("\r\n%d\r\n", init_identity);
+//			printf("%d\r\n", init_pwm);
+//			printf("%d\r\n", pwm1);
+//			printf("%d\r\n", pwm2);
+//			printf("%d\r\n", pwm3);
+//			printf("%d\r\n", pwm4);
+//			printf("%d\r\n", pwm5);
+//			printf("%d\r\n", pwm6);
 			
 			if(init_identity == 1)
 				TIM_SetCompare1(TIM3, init_pwm);
@@ -87,7 +88,5 @@ int main(void)
 				TIM_SetCompare4(TIM4, pwm6);
 			}
 		}
-		
-
 	}
 }

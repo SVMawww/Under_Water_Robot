@@ -103,13 +103,9 @@ def get_track():
             hierachy返回N*4的矩阵， N表示轮廓个数
                     
             第一个数：表示同一级轮廓的下个轮廓的编号，如果这一级轮廓没有下一个轮廓，一般是这一级轮廓的最后一个的时候，则为-1
-
             第二个数：表示同一级轮廓的上个轮廓的编号，如果这一级轮廓没有上一个轮廓，一般是这一级轮廓的第一个的时候，则为-1
-
             第三个数：表示该轮廓包含的下一级轮廓的第一个的编号，假如没有，则为-1
-
             第四个数： 表示该轮廓的上一级轮廓的编号，假如没有上一级，则为-1
-
             """
             contours, hierarchy = cv2.findContours(median, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             #  cv2.RETR_EXTERNAL 只寻找最高级轮廓，即最外面的轮廓
@@ -159,21 +155,23 @@ def get_track():
                         (bottom_point_y - left_point_y) * (bottom_point_y - left_point_y) < \
                         (bottom_point_x - right_point_x) * (bottom_point_x - right_point_x) + \
                         (bottom_point_y - right_point_y) * (bottom_point_y - right_point_y):
-                    tmp_angle = int(-rect[2])
+                    tmp_angle = int(rect[2])
                 else:
-                    tmp_angle = int(-rect[2] + 90)
+                    tmp_angle = int(rect[2] - 90)
 
-                tmp_x = 320 + int(np.tan(tmp_angle / 180 * np.pi) * (-160 + rect[0][1]) + rect[0][0])
-                cv2.circle(img, (tmp_x, 160), 3, (0, 255, 0), 5)
-                cv2.line(img, (tmp_x, 160), (320, 160), (0, 0, 255), 5)
-                cv2.putText(img, str(320 - tmp_x) + ',' + str(tmp_angle), (320, 120), font, 1, (0, 0, 255), 2)
+                tmp_x = -320 + int(np.tan(tmp_angle / 180 * np.pi) * (-400 + rect[0][1]) + rect[0][0])
+                cv2.circle(img, (320 + tmp_x, 400), 3, (0, 255, 0), 5)
+                cv2.line(img, (320 + tmp_x, 400), (320, 400), (0, 0, 255), 5)
+                cv2.putText(img, str(tmp_x) + ',' + str(tmp_angle), (320, 430), font, 1, (0, 0, 255), 2)
 ##_-----------------------------------------------------------
                 cv2.imshow('img', img)
                 cv2.imshow('median', median)
-               
+                
+                return [tmp_x, tmp_angle]
+                    
             else:
-                cv2.imshow('img', img)
-                cv2.imshow('median', median)
+                #cv2.imshow('img', img)
+                #cv2.imshow('median', median)
                 return None
 
         except:
@@ -264,18 +262,18 @@ def get_rect():
 
 
 ##----------------------------------------------------
-vfeed_1 = 1
-vfeed_2 = 1
+vfeed_1 = 0.9
+vfeed_2 = 1.1
 vfeed_3 = 1
 vfeed_4 = 1
 vfeed_5 = 1
 vfeed_6 = 1
 v_z = 0
-v_x = 0 
+v_x = 30 
 v_y = 0
 v_p = 0
-max_to_1500 = 50
-max_of_acc = 5
+max_to_1500 = 150
+max_of_acc = 25
 
 v1 = V_CONTROL(max_to_1500, max_of_acc, vfeed_1)
 v2 = V_CONTROL(max_to_1500, max_of_acc, vfeed_2)
@@ -285,8 +283,8 @@ v5 = V_CONTROL(max_to_1500, max_of_acc, vfeed_5)
 v6 = V_CONTROL(max_to_1500, max_of_acc, vfeed_6)
 
 ##----------------------------------------------------
-line_pid = PID(100, -100, 1, 0, 0)
-
+y_pid = PID(40, -40, 1.5, 0, 0)
+p_pid = PID(30, -30, 1, 0, 0)
 
 ##----------------------------------------------------
 
@@ -300,23 +298,36 @@ print('input:',text)
 if cap2.isOpened():
     while True:
         track_res = get_track()
-        #print(track_res)
+        print(track_res)
         
-        #if track_res != None:
-        
-            #v_p = line_pid.calculate(0, track_res)
-        
+        if track_res != None:
+            v_y = y_pid.calculate(0, track_res[0])
+            v_p = -p_pid.calculate(0, track_res[1])
+                  
         str1 = v1.percent2str(v_z)
         str2 = v2.percent2str(v_z)
         str3 = v3.percent2str(v_x + v_y + v_p)
         str4 = v4.percent2str(v_x - v_y - v_p)
         str5 = v5.percent2str(v_x + v_y - v_p)
         str6 = v6.percent2str(v_x - v_y + v_p)
-        #print((str(track_res) + ',' + str1 + ',' + str2 + ',' + str3 + ',' + str4 + ',' + str5 + ',' + str6).encode())
+        print((',' + str1 + ',' + str2 + ',' + str3 + ',' + str4 + ',' + str5 + ',' + str6).encode())
 
         ser.write(('0,0,' + str1 + ',' + str2 + ',' + str3 + ',' + str4 + ',' + str5 + ',' + str6).encode())
         
         if cv2.waitKey(1) & 0xff == ord('q'):
+            ser.write(('0,0,1500,1500,1500,1500,1500,1500').encode())
             break
 else:
     print("error open cap2 failed")
+    
+ser.write(('1,1500').encode())
+time.sleep(0.01)
+ser.write(('2,'+'1500').encode())
+time.sleep(0.01)
+ser.write(('3,'+'1500').encode())
+time.sleep(0.01)
+ser.write(('4,'+'1500').encode())
+time.sleep(0.01)
+ser.write(('5,'+'1500').encode())
+time.sleep(0.01)
+ser.write(('6,'+'1500').encode())
