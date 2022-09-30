@@ -31,9 +31,14 @@
 "..\obj\oc.o"
 "..\obj\uart.o"
 "..\obj\trans.o"
+"..\obj\mpu.o"
 "..\obj\main.o"
 "..\obj\stm32f10x_it.o"
 "..\obj\system_stm32f10x.o"
+"..\obj\inv_mpu.o"
+"..\obj\inv_mpu_dmp_motion_driver.o"
+"..\obj\ioi2c.o"
+"..\obj\mpu6050.o"
 --library_type=microlib --strict --scatter "..\OBJ\Template_F103RB.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

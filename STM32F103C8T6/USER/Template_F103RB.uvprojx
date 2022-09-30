@@ -563,6 +563,11 @@
               <FileType>1</FileType>
               <FilePath>..\Middle\trans.c</FilePath>
             </File>
+            <File>
+              <FileName>mpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Tem_STM32F103C8T6\Middle\mpu.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -582,6 +587,31 @@
               <FileName>system_stm32f10x.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\system_stm32f10x.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>others</GroupName>
+          <Files>
+            <File>
+              <FileName>inv_mpu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Tem_STM32F103C8T6\Button\others\mpu\inv_mpu.c</FilePath>
+            </File>
+            <File>
+              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Tem_STM32F103C8T6\Button\others\mpu\inv_mpu_dmp_motion_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>IOI2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Tem_STM32F103C8T6\Button\others\mpu\IOI2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>MPU6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Tem_STM32F103C8T6\Button\others\mpu\MPU6050.c</FilePath>
             </File>
           </Files>
         </Group>

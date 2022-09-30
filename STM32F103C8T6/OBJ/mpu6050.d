@@ -1,6 +1,6 @@
-..\obj\mpu6050.o: ..\Button\others\mpu\MPU6050.c
-..\obj\mpu6050.o: ..\Button\others\mpu\MPU6050.h
-..\obj\mpu6050.o: ..\Button\others\mpu\IOI2C.h
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\MPU6050.c
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\MPU6050.h
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\IOI2C.h
 ..\obj\mpu6050.o: ..\USER\stm32f10x.h
 ..\obj\mpu6050.o: ..\CORE\core_cm3.h
 ..\obj\mpu6050.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdint.h
@@ -32,11 +32,11 @@
 ..\obj\mpu6050.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\mpu6050.o: ..\SYSTEM\delay\delay.h
 ..\obj\mpu6050.o: ..\SYSTEM\sys\sys.h
-..\obj\mpu6050.o: ..\Button\others\mpu\inv_mpu.h
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\inv_mpu.h
 ..\obj\mpu6050.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\mpu6050.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\mpu6050.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\mpu6050.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\math.h
-..\obj\mpu6050.o: ..\Button\others\mpu\inv_mpu_dmp_motion_driver.h
-..\obj\mpu6050.o: ..\Button\others\mpu\dmpKey.h
-..\obj\mpu6050.o: ..\Button\others\mpu\dmpmap.h
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\inv_mpu_dmp_motion_driver.h
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\dmpKey.h
+..\obj\mpu6050.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\dmpmap.h

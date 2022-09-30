@@ -1,5 +1,5 @@
-..\obj\ioi2c.o: ..\Button\others\mpu\IOI2C.c
-..\obj\ioi2c.o: ..\Button\others\mpu\ioi2c.h
+..\obj\ioi2c.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\IOI2C.c
+..\obj\ioi2c.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\ioi2c.h
 ..\obj\ioi2c.o: ..\USER\stm32f10x.h
 ..\obj\ioi2c.o: ..\CORE\core_cm3.h
 ..\obj\ioi2c.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdint.h

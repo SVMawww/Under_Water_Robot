@@ -38,4 +38,5 @@
 ..\obj\main.o: ..\Button\oc.h
 ..\obj\main.o: ..\Middle\trans.h
 ..\obj\main.o: ..\Button\uart.h
+..\obj\main.o: ..\Middle\mpu.h
 ..\obj\main.o: ..\Button\gpio.h

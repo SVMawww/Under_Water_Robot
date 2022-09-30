@@ -33,6 +33,8 @@ int main(void)
 	delay_init();
 	////   		    
 	pwm_init();
+	mpu__init();
+
 	trans_others_init(1, 115200);
 	trans_others_init(2, 115200);
 
@@ -45,7 +47,9 @@ int main(void)
 			else
 				depth = 100 * depth1 + depth2;
 			
-			printf("depth = %d\r\n", depth);
+			mpu_getdata();
+			
+	        printf("depth = %d, pitch = %d\r\n", depth, (int)pitch);
 		}
 
 		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, 0, 0))
@@ -88,5 +92,9 @@ int main(void)
 				TIM_SetCompare4(TIM4, pwm6);
 			}
 		}
+		
+		//mpu_getdata();
+		//delay_ms(100);	
+	    //printf("depth = %d, pitch = %d\r\n", depth, (int)pitch);
 	}
 }

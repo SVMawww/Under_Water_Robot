@@ -1,5 +1,5 @@
-..\obj\inv_mpu.o: ..\Button\others\mpu\inv_mpu.c
-..\obj\inv_mpu.o: ..\Button\others\mpu\inv_mpu.h
+..\obj\inv_mpu.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\inv_mpu.c
+..\obj\inv_mpu.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\inv_mpu.h
 ..\obj\inv_mpu.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\inv_mpu.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\inv_mpu.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\string.h
@@ -35,4 +35,4 @@
 ..\obj\inv_mpu.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\inv_mpu.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\inv_mpu.o: ..\STM32F10x_FWLib\inc\misc.h
-..\obj\inv_mpu.o: ..\Button\others\mpu\ioi2c.h
+..\obj\inv_mpu.o: ..\..\..\Tem_STM32F103C8T6\Button\others\mpu\ioi2c.h

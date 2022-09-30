@@ -12,6 +12,7 @@
 //******************* Middle ************************//
 #include "pwm.h"
 #include "trans.h"
+#include "mpu.h"
 
 //******************* Button ************************//
 #include "gpio.h"

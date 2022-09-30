@@ -1,5 +1,5 @@
-..\obj\mpu.o: ..\Middle\mpu.c
-..\obj\mpu.o: ..\Middle\mpu.h
+..\obj\mpu.o: ..\..\..\Tem_STM32F103C8T6\Middle\mpu.c
+..\obj\mpu.o: ..\..\..\Tem_STM32F103C8T6\Middle\mpu.h
 ..\obj\mpu.o: ..\USER\stm32f10x.h
 ..\obj\mpu.o: ..\CORE\core_cm3.h
 ..\obj\mpu.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdint.h
