@@ -51,7 +51,7 @@ int main(void)
 			
 			mpu_getdata();
 			
-	        printf("depth = %d, pitch = %d\r\n", depth, (int)(100.0 * pitch));
+	        printf("depth = %d, pitch = %d\r\n", depth, (int)(100.0  * pitch));
 		}
 
 		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, 0, 0))
