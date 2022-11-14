@@ -1,5 +1,48 @@
 #include "oc.h"
 
+void tim2_init()        
+{
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
+	TIM_OCInitTypeDef TIM_OCInitStruct;
+	GPIO_InitTypeDef GPIO_InitStruct;   
+
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+	
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1 ;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStruct);	
+	
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_0;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStruct);	
+	
+	TIM_TimeBaseInitStruct.TIM_Period = 99;              
+	TIM_TimeBaseInitStruct.TIM_Prescaler  = 71;          
+	TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInitStruct.TIM_ClockDivision = 0;
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStruct);
+	
+	TIM_OCInitStruct.TIM_OCMode = TIM_OCMode_PWM1;             //选择PWM1模式
+	TIM_OCInitStruct.TIM_OutputState = TIM_OutputState_Enable; //比较输出使能
+	TIM_OCInitStruct.TIM_Pulse = 0;                            //设置待装入捕获比较寄存器的脉冲值
+	TIM_OCInitStruct.TIM_OCPolarity = TIM_OCPolarity_High;     //设置输出极性
+	//TIM_OC1Init(TIM2, &TIM_OCInitStruct);                      //初始化输出比较参数
+	TIM_OC2Init(TIM2, &TIM_OCInitStruct);
+	//TIM_OC3Init(TIM2, &TIM_OCInitStruct);
+	//TIM_OC4Init(TIM2, &TIM_OCInitStruct);
+	
+	//TIM_OC1PreloadConfig(TIM2, TIM_OCPreload_Enable);  //CH1使能预装载寄存器
+	TIM_OC2PreloadConfig(TIM2, TIM_OCPreload_Enable);
+	//TIM_OC3PreloadConfig(TIM2, TIM_OCPreload_Enable);
+	//TIM_OC4PreloadConfig(TIM2, TIM_OCPreload_Enable);
+	
+	TIM_ARRPreloadConfig(TIM2, ENABLE);
+	TIM_Cmd(TIM2, ENABLE);
+}
+
 void tim3_init()        
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
@@ -83,6 +126,7 @@ void tim4_init()
 
 void pwm_init()
 {
+	tim2_init();
 	tim3_init();
 	tim4_init();
 }

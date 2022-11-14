@@ -1,5 +1,5 @@
-..\obj\maincycle.o: ..\SYSTEM\maincycle\maincycle.c
-..\obj\maincycle.o: ..\SYSTEM\maincycle\maincycle.h
+..\obj\maincycle.o: ..\..\..\Tem_STM32F103C8T6\SYSTEM\maincycle\maincycle.c
+..\obj\maincycle.o: ..\..\..\Tem_STM32F103C8T6\SYSTEM\maincycle\maincycle.h
 ..\obj\maincycle.o: ..\USER\stm32f10x.h
 ..\obj\maincycle.o: ..\CORE\core_cm3.h
 ..\obj\maincycle.o: E:\Keil\_MDK_C51\ARM\ARMCC\Bin\..\include\stdint.h

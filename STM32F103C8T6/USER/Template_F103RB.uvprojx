@@ -533,6 +533,11 @@
               <FileType>1</FileType>
               <FilePath>..\SYSTEM\pid\pid.c</FilePath>
             </File>
+            <File>
+              <FileName>maincycle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Tem_STM32F103C8T6\SYSTEM\maincycle\maincycle.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

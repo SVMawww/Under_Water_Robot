@@ -27,6 +27,7 @@
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\pid.o"
+"..\obj\maincycle.o"
 "..\obj\gpio.o"
 "..\obj\oc.o"
 "..\obj\uart.o"

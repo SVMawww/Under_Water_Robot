@@ -4,7 +4,7 @@
 //      树莓派的TX：PA10（STM32的RX）
 //		控制深度螺旋桨：PA6 PA7
 //		控制水平螺旋桨：PB6 PB7 PB8 PB9（具体连接情况，在连接硬件的时候配合软件调）
-//
+// 
 //***************************************************//
 //STM32F103实现功能 1.深度传感器
 //                  2.电机速度控制器 * 6
@@ -19,7 +19,7 @@
 #include "include.h"
 
 int init_identity = 0, init_pwm = 0;
-int pwm1 = 0, pwm2 = 0, pwm3 = 0, pwm4 = 0, pwm5 = 0, pwm6 = 0;
+int pwm1 = 0, pwm2 = 0, pwm3 = 0, pwm4 = 0, pwm5 = 0, pwm6 = 0, catchball = 0;
 
 int depth = 0;	int depth1 = 0, depth2 = 0;
 int temp = 0;
@@ -35,9 +35,9 @@ int main(void)
 	pwm_init();
 	mpu__init();
 
-	trans_others_init(1, 115200);
+	trans_others_init(1, 115200); 
 	trans_others_init(2, 115200);
-
+	
 	while(1)
 	{	
 		if(trans_others_R(2, &temp, 0, &depth1, &depth2, 0, 0, 0, 0, 0, 0))
@@ -54,8 +54,25 @@ int main(void)
 	        printf("depth = %d, pitch = %d\r\n", depth, (int)(100.0  * pitch));
 		}
 
-		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, 0, 0))
+		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, &catchball, 0))
 		{
+			if(catchball == 0)
+			{
+				TIM_SetCompare2(TIM2, 0);
+			}
+		    else if(catchball == 1)
+			{
+				GPIO_ResetBits(GPIOA, GPIO_Pin_0);
+				GPIO_SetBits(GPIOA, GPIO_Pin_4);
+				TIM_SetCompare2(TIM2, 50);
+			}
+		    else if(catchball == 2)
+			{
+				GPIO_SetBits(GPIOA, GPIO_Pin_0);
+				GPIO_ResetBits(GPIOA, GPIO_Pin_4);
+				TIM_SetCompare2(TIM2, 50);
+			}
+			
 //			printf("\r\n%d\r\n", init_identity);
 //			printf("%d\r\n", init_pwm);
 //			printf("%d\r\n", pwm1);
