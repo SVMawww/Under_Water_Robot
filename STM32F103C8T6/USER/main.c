@@ -19,7 +19,7 @@
 #include "include.h"
 
 int init_identity = 0, init_pwm = 0;
-int pwm1 = 0, pwm2 = 0, pwm3 = 0, pwm4 = 0, pwm5 = 0, pwm6 = 0, catchball = 0;
+int pwm1 = 0, pwm2 = 0, pwm3 = 0, pwm4 = 0, pwm5 = 0, pwm6 = 0, pwm7 = 0, catchball = 0;
 
 int depth = 0;	int depth1 = 0, depth2 = 0;
 int temp = 0;
@@ -54,7 +54,7 @@ int main(void)
 	        printf("depth = %d, pitch = %d\r\n", depth, (int)(100.0  * pitch));
 		}
 
-		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, &catchball, 0))
+		if(trans_others_R(1, &init_identity, &init_pwm, &pwm1, &pwm2, &pwm3, &pwm4, &pwm5, &pwm6, &pwm7, &catchball))
 		{
 			if(catchball == 0)
 			{
@@ -94,6 +94,8 @@ int main(void)
 				TIM_SetCompare3(TIM4, init_pwm);
 			else if(init_identity == 6)
 				TIM_SetCompare4(TIM4, init_pwm);
+			else if(init_identity == 7)
+				TIM_SetCompare3(TIM3, init_pwm);
 			else
 		    {
 			    if(pwm1 == 0) pwm1 = 1500;
@@ -102,6 +104,7 @@ int main(void)
 				if(pwm4 == 0) pwm4 = 1500;
 				if(pwm5 == 0) pwm5 = 1500;
 				if(pwm6 == 0) pwm6 = 1500;
+				if(pwm7 == 0) pwm7 = 1500;
 				
 				TIM_SetCompare1(TIM3, pwm1);
 				TIM_SetCompare2(TIM3, pwm2);
@@ -109,6 +112,7 @@ int main(void)
 				TIM_SetCompare2(TIM4, pwm4);
 				TIM_SetCompare3(TIM4, pwm5);
 				TIM_SetCompare4(TIM4, pwm6);
+				TIM_SetCompare3(TIM3, pwm7);
 			}
 		}
 		
